@@ -1,6 +1,6 @@
 {
   "title": "Rayen Family Tree",
-  "subtitle": "A read-only family view driven by a single settings file. Every person can carry optional social links, and relationships can be labeled freely.",
+  "subtitle": "A read-only family view driven by a single settings file. Mostly vibe-coded cause that's rayen's way.",
   "editContact": {
     "label": "@guigui0246",
     "href": "https://discord.com/channels/@me/436178855104086037",
@@ -108,7 +108,7 @@
     {
       "from": "amir",
       "to": "youssef",
-      "label": "parent of of",
+      "label": "parent of",
       "tone": "family"
     },
     {
