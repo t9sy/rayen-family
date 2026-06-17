@@ -10,6 +10,7 @@
     {
       "id": "amir",
       "name": "Amir Rayen",
+      "aliases": ["Papa Amir", "Amir el Rayen"],
       "role": "Patriarch",
       "avatarImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=512&q=80",
       "generation": 0,
@@ -25,6 +26,7 @@
     {
       "id": "leila",
       "name": "Leila Rayen",
+      "aliases": ["Mama Leila", "Leila Rayen-Benali"],
       "role": "Matriarch",
       "avatarImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=512&q=80",
       "generation": 0,
@@ -39,6 +41,7 @@
     {
       "id": "youssef",
       "name": "Youssef Rayen",
+      "aliases": ["Youss", "Youssef R."],
       "role": "Child",
       "avatarImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=512&q=80",
       "generation": 1,
@@ -54,6 +57,7 @@
     {
       "id": "nadia",
       "name": "Nadia Rayen",
+      "aliases": ["Nadi", "Nadia R."],
       "role": "Child",
       "generation": 1,
       "order": 1,
@@ -67,6 +71,7 @@
     {
       "id": "mika",
       "name": "Mika Benali",
+      "aliases": ["Mika B.", "Mika Beni"],
       "role": "Partner",
       "generation": 1,
       "order": 2,
@@ -80,6 +85,7 @@
     {
       "id": "salma",
       "name": "Salma Rayen",
+      "aliases": ["Soso", "Salma R."],
       "role": "Grandchild",
       "generation": 2,
       "order": 0,
@@ -90,6 +96,7 @@
     {
       "id": "adam",
       "name": "Adam Rayen",
+      "aliases": ["Addy", "Adam R."],
       "role": "Grandchild",
       "generation": 2,
       "order": 1,

@@ -3,7 +3,7 @@ import type { Person, Relation } from './types';
 export type MatchMode = 'all' | 'any';
 export type PresenceMode = 'present' | 'absent';
 
-export type PersonFieldKey = 'id' | 'name' | 'role' | 'born' | 'died' | 'location' | 'bio';
+export type PersonFieldKey = 'id' | 'name' | 'aliases' | 'role' | 'born' | 'died' | 'location' | 'bio';
 
 export type FilterState = {
   matchMode: MatchMode;
@@ -26,6 +26,7 @@ export type FilterOptions = {
 const personFieldLabels: Array<{ key: PersonFieldKey; label: string }> = [
   { key: 'id', label: 'Id' },
   { key: 'name', label: 'Name' },
+  { key: 'aliases', label: 'Aliases' },
   { key: 'role', label: 'Role' },
   { key: 'born', label: 'Born' },
   { key: 'died', label: 'Died' },
@@ -50,6 +51,7 @@ function getPersonSearchText(person: Person) {
   return [
     person.id,
     person.name,
+    ...(person.aliases ?? []),
     person.role,
     person.born,
     person.died,
@@ -100,6 +102,7 @@ export function createInitialFilterState(): FilterState {
     personFields: {
       id: '',
       name: '',
+      aliases: '',
       role: '',
       born: '',
       died: '',
@@ -141,9 +144,16 @@ export function filterPeople(people: Person[], relations: Relation[], filters: F
     }
 
     for (const [field, query] of Object.entries(filters.personFields) as Array<[PersonFieldKey, string]>) {
-      if (normalize(query)) {
-        checks.push(includesQuery(person[field], query));
+      if (!normalize(query)) {
+        continue;
       }
+
+      if (field === 'aliases') {
+        checks.push((person.aliases ?? []).join(' ').toLowerCase().includes(normalize(query)));
+        continue;
+      }
+
+      checks.push(includesQuery(person[field], query));
     }
 
     const personNetworks = Object.keys(person.socialLinks ?? {});

@@ -11,6 +11,7 @@ type PersonCardProps = {
 export function PersonCard({ person, relatedRelations, otherPersonName, setCardRef }: PersonCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const avatarLabel = person.avatarImage ? person.name : '?';
+  const aliases = person.aliases ?? [];
 
   return (
     <article
@@ -73,6 +74,19 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
         </dl>
 
         {person.bio ? <p className="person-bio">{person.bio}</p> : null}
+
+        {aliases.length > 0 ? (
+          <div className="person-aliases">
+            <span className="person-aliases-label">Aliases</span>
+            <div className="person-aliases-list">
+              {aliases.map((alias) => (
+                <span key={alias} className="person-alias-pill">
+                  {alias}
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         {person.socialLinks && Object.keys(person.socialLinks).length > 0 ? (
           <div className="social-links">

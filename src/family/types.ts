@@ -1,6 +1,7 @@
 export type Person = {
   id: string;
   name: string;
+  aliases?: string[];
   role?: string;
   avatarImage?: string;
   generation: number;
