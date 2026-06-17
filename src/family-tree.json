@@ -1,0 +1,162 @@
+{
+  "title": "Rayen Family Tree",
+  "subtitle": "A read-only family view driven by a single settings file. Every person can carry optional social links, and relationships can be labeled freely.",
+  "editContact": {
+    "label": "@guigui0246",
+    "href": "https://discord.com/channels/@me/436178855104086037"
+  },
+  "people": [
+    {
+      "id": "amir",
+      "name": "Amir Rayen",
+      "role": "Patriarch",
+      "avatarImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=512&q=80",
+      "generation": 0,
+      "order": 0,
+      "born": "1968",
+      "location": "Marseille",
+      "bio": "Keeps the family archive organized and updates the living record.",
+      "socialLinks": {
+        "facebook": "https://example.com/amir-facebook",
+        "linkedin": "https://example.com/amir-linkedin"
+      }
+    },
+    {
+      "id": "leila",
+      "name": "Leila Rayen",
+      "role": "Matriarch",
+      "avatarImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=512&q=80",
+      "generation": 0,
+      "order": 1,
+      "born": "1970",
+      "location": "Marseille",
+      "bio": "Coordinates the extended family gatherings and keeps contact details up to date.",
+      "socialLinks": {
+        "instagram": "https://example.com/leila-instagram"
+      }
+    },
+    {
+      "id": "youssef",
+      "name": "Youssef Rayen",
+      "role": "Child",
+      "avatarImage": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=512&q=80",
+      "generation": 1,
+      "order": 0,
+      "born": "1996",
+      "location": "Lyon",
+      "bio": "Works abroad but remains linked through multiple family relations.",
+      "socialLinks": {
+        "github": "https://example.com/youssef-github",
+        "x": "https://example.com/youssef-x"
+      }
+    },
+    {
+      "id": "nadia",
+      "name": "Nadia Rayen",
+      "role": "Child",
+      "generation": 1,
+      "order": 1,
+      "born": "1999",
+      "location": "Toulouse",
+      "bio": "Maintains a branch of the family tree with a few legal guardianship notes.",
+      "socialLinks": {
+        "website": "https://example.com/nadia-site"
+      }
+    },
+    {
+      "id": "mika",
+      "name": "Mika Benali",
+      "role": "Partner",
+      "generation": 1,
+      "order": 2,
+      "born": "1995",
+      "location": "Lyon",
+      "bio": "Included as a partner node to show non-parent family relations.",
+      "socialLinks": {
+        "linkedin": "https://example.com/mika-linkedin"
+      }
+    },
+    {
+      "id": "salma",
+      "name": "Salma Rayen",
+      "role": "Grandchild",
+      "generation": 2,
+      "order": 0,
+      "born": "2020",
+      "location": "Lyon",
+      "bio": "A younger branch connected through adoption and guardianship links."
+    },
+    {
+      "id": "adam",
+      "name": "Adam Rayen",
+      "role": "Grandchild",
+      "generation": 2,
+      "order": 1,
+      "born": "2022",
+      "location": "Toulouse",
+      "bio": "Added to show sibling and parent links in the same dataset."
+    }
+  ],
+  "relations": [
+    {
+      "from": "amir",
+      "to": "leila",
+      "label": "spouse",
+      "tone": "romance"
+    },
+    {
+      "from": "amir",
+      "to": "youssef",
+      "label": "parent",
+      "tone": "family"
+    },
+    {
+      "from": "leila",
+      "to": "youssef",
+      "label": "parent",
+      "tone": "family"
+    },
+    {
+      "from": "amir",
+      "to": "nadia",
+      "label": "parent",
+      "tone": "family"
+    },
+    {
+      "from": "leila",
+      "to": "nadia",
+      "label": "parent",
+      "tone": "family"
+    },
+    {
+      "from": "youssef",
+      "to": "mika",
+      "label": "partner",
+      "tone": "legal"
+    },
+    {
+      "from": "youssef",
+      "to": "salma",
+      "label": "parent",
+      "tone": "family"
+    },
+    {
+      "from": "mika",
+      "to": "salma",
+      "label": "guardian",
+      "tone": "legal"
+    },
+    {
+      "from": "nadia",
+      "to": "adam",
+      "label": "parent",
+      "tone": "family"
+    },
+    {
+      "from": "salma",
+      "to": "adam",
+      "label": "adoptive sibling",
+      "tone": "custom"
+    }
+  ]
+}
