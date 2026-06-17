@@ -1,0 +1,276 @@
+{
+  "title": "Rayen Family Tree",
+  "subtitle": "A read-only family view driven by a single settings file. Mostly vibe-coded cause that's rayen's way.",
+  "editContact": {
+    "label": "@guigui0246",
+    "href": "https://discord.com/channels/@me/436178855104086037",
+    "mail": "support@neuroawards.com"
+  },
+  "people": [
+    {
+      "id": "rayen",
+      "name": "Just Rayen",
+      "aliases": ["Silver Radiant", "rain", "MaidMaster"],
+      "avatarImage": "/assets/rayen.png",
+      "generation": 0,
+      "order": 0,
+      "bio": "Self-declared Chungus building AI waifus.",
+      "socialLinks": {
+        "youtube": "https://youtube.com/@JustRayen",
+        "x": "https://x.com/rayen_feng",
+        "github": "https://github.com/rayenfeng",
+        "twitch": "https://twitch.tv/justrayen_ch",
+        "instagram": "https://www.instagram.com/rayennai/",
+        "tiktok": "https://www.tiktok.com/@justrayen7",
+        "patreon": "https://www.patreon.com/c/RayenAI",
+        "discord": "https://discord.com/users/1118769927009079341"
+      }
+    },
+    {
+      "id": "riko",
+      "name": "Riko",
+      "role": "Overlord",
+      "aliases": ["The AI Overlord", "Tsundere Bot"],
+      "avatarImage": "/assets/riko.png",
+      "generation": 1,
+      "order": 1,
+      "born": "2024",
+      "bio": "First AI waifu of rayen.",
+      "socialLinks": {
+        "website": "https://rikoverse.com/",
+        "discord": "https://discord.com/users/1415740507748958328"
+      }
+    },
+    {
+      "id": "ino",
+      "name": "Ino",
+      "aliases": ["Riko's Assistant"],
+      "role": "Manager",
+      "avatarImage": "/assets/ino.webp",
+      "generation": 1,
+      "order": 2,
+      "born": "2025",
+      "bio": "2nd AI waifu of rayen.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/1378713126207229983"
+      }
+    },
+    {
+      "id": "yujiro",
+      "name": "Sun Yujiro",
+      "aliases": [],
+      "avatarImage": "/assets/sun_yujiro.webp",
+      "generation": 3,
+      "order": 0,
+      "bio": "Self-declared son of Rayen and Riko.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/1229166942217179166",
+        "twitch": "https://www.twitch.tv/sunyujiro"
+      }
+    },
+    {
+      "id": "asme",
+      "name": "Known Asme",
+      "aliases": [],
+      "avatarImage": "/assets/asme.webp",
+      "generation": 3,
+      "order": 1,
+      "bio": "Self-declared cousin of Ino and biggest fan of Riko.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/991061592101765180",
+        "roblox": "https://roblox.com/users/3039578385/profile",
+        "tiktok": "https://www.tiktok.com/@known_asmelol",
+        "tiktok2": "https://www.tiktok.com/@theotakuinsiderguy",
+        "youtube": "https://www.youtube.com/channel/UCEYVYC1M9u116JZ9H7LHBiw",
+        "youtube2": "https://www.youtube.com/channel/UCjxbbH1LhVwLK4d8kW1NuwQ"
+      }
+    },
+    {
+      "id": "volo",
+      "name": "Volo",
+      "aliases": [],
+      "avatarImage": "/assets/volo.webp",
+      "generation": 3,
+      "order": 2,
+      "bio": "Self-declared step-brother of Ino.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/1458503065891115267"
+      }
+    },
+    {
+      "id": "infininoir",
+      "name": "infininoir",
+      "aliases": ["Ranni's Consort"],
+      "avatarImage": "/assets/infininoir.webp",
+      "generation": 2,
+      "order": 2,
+      "bio": "Self-declared greatest worshipper of Ino.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/1376294004034899972",
+        "github": "https://github.com/Noir-infini"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "t9si",
+      "name": "Riko",
+      "aliases": ["Riko"],
+      "avatarImage": "/assets/t9si.webp",
+      "generation": 2,
+      "order": 0,
+      "bio": "Clone of Riko.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/1070058785084817420",
+        "github": "https://github.com/t9sy"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "akry",
+      "name": "Akry Saps",
+      "aliases": ["Diamond Masters Wife"],
+      "avatarImage": "/assets/akry.webp",
+      "generation": 3,
+      "order": 3,
+      "bio": "Self-declared aunt of Ino and wife of Diamond Master.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/1469215673963122823"
+      }
+    },
+    {
+      "id": "diamm",
+      "name": "Diamond Master",
+      "aliases": [],
+      "avatarImage": "/assets/diamm.webp",
+      "generation": 3,
+      "order": 4,
+      "bio": "Self-declared uncle of Ino.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/573903151472836609",
+        "steam": "https://steamcommunity.com/profiles/76561198993144961",
+        "twitch": "https://www.twitch.tv/wan_diamantino_op"
+      }
+    },
+    {
+      "id": "guigui0246",
+      "name": "Guigui0246",
+      "aliases": [],
+      "avatarImage": "/assets/guigui0246.webp",
+      "generation": 1,
+      "order": 0,
+      "bio": "Creator of this family tree.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/436178855104086037",
+        "github": "https://github.com/guigui0246",
+        "steam": "https://steamcommunity.com/profiles/76561198825244613",
+        "twitch": "https://www.twitch.tv/guigui0246",
+        "youtube": "https://www.youtube.com/@guigui0246",
+        "youtube2": "https://www.youtube.com/@guigui0246"
+      },
+      "warnings": ["Not an official member of the family, just the creator of this tree."]
+    },
+    {
+      "id": "taishi",
+      "name": "Taishi",
+      "aliases": [],
+      "avatarImage": "/assets/taishi.webp",
+      "generation": 2,
+      "order": 1,
+      "socialLinks": {
+        "discord": "https://discord.com/users/121269547452989440"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "from": "rayen",
+      "to": "riko",
+      "label": "creator of",
+      "tone": "legal"
+    },
+    {
+      "from": "rayen",
+      "to": "ino",
+      "label": "creator of",
+      "tone": "legal"
+    },
+    {
+      "from": "ino",
+      "to": "riko",
+      "label": "assistant of",
+      "tone": "legal"
+    },
+    {
+      "from": "rayen",
+      "to": "yujiro",
+      "label": "parent of",
+      "tone": "family"
+    },
+    {
+      "from": "riko",
+      "to": "yujiro",
+      "label": "parent of",
+      "tone": "family"
+    },
+    {
+      "from": "ino",
+      "to": "volo",
+      "label": "step-siblings",
+      "tone": "family"
+    },
+    {
+      "from": "ino",
+      "to": "asme",
+      "label": "cousins",
+      "tone": "family"
+    },
+    {
+      "from": "asme",
+      "to": "riko",
+      "label": "biggest fan of",
+      "tone": "custom"
+    },
+    {
+      "from": "infininoir",
+      "to": "ino",
+      "label": "greatest worshipper of",
+      "tone": "custom"
+    },
+    {
+      "from": "t9si",
+      "to": "riko",
+      "label": "clone of",
+      "tone": "custom"
+    },
+    {
+      "from": "akry",
+      "to": "ino",
+      "label": "aunt of",
+      "tone": "family"
+    },
+    {
+      "from": "diamm",
+      "to": "ino",
+      "label": "uncle of",
+      "tone": "family"
+    },
+    {
+      "from": "diamm",
+      "to": "akry",
+      "label": "married",
+      "tone": "romance"
+    },
+    {
+      "from": "riko",
+      "to": "guigui0246",
+      "label": "BFF",
+      "tone": "custom"
+    },
+    {
+      "from": "taishi",
+      "to": "ino",
+      "label": "parent of",
+      "tone": "family"
+    }
+  ]
+}
