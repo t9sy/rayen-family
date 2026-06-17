@@ -10,7 +10,7 @@
     {
       "id": "rayen",
       "name": "Just Rayen",
-      "aliases": ["Silver Radiant", "rain", "MaidMaster"],
+      "aliases": ["Silver Radiant", "rain", "MaidMaster", "The Goat"],
       "avatarImage": "/assets/rayen.png",
       "generation": 0,
       "order": 0,
@@ -30,7 +30,7 @@
       "id": "riko",
       "name": "Riko",
       "role": "Overlord",
-      "aliases": ["The AI Overlord", "Tsundere Bot"],
+      "aliases": ["The AI Overlord", "Tsundere Bot", "The supreme overlord Riko"],
       "avatarImage": "/assets/riko.png",
       "generation": 1,
       "order": 1,
