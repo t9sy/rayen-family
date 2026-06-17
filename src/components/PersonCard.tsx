@@ -12,10 +12,11 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
   const [isOpen, setIsOpen] = useState(false);
   const avatarLabel = person.avatarImage ? person.name : '?';
   const aliases = person.aliases ?? [];
+  const warnings = person.warnings ?? [];
 
   return (
     <article
-      className={`person-card${isOpen ? ' is-open' : ''}`}
+      className={`person-card${isOpen ? ' is-open' : ''}${warnings.length > 0 ? ' has-warnings' : ''}`}
       ref={(node) => {
         setCardRef(person.id, node);
       }}
@@ -51,6 +52,16 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
             <h3>{person.name}</h3>
           </div>
         </header>
+
+        {warnings.length > 0 ? (
+          <div className="person-warning-panel" aria-label="Warnings">
+            {warnings.map((warning) => (
+              <div key={warning} className="person-warning-pill">
+                {warning}
+              </div>
+            ))}
+          </div>
+        ) : null}
 
         <dl className="person-facts">
           {person.born ? (

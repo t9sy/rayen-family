@@ -466,6 +466,13 @@ select {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 
+.person-card.has-warnings .person-avatar {
+  border-color: rgba(245, 201, 66, 0.86);
+  box-shadow:
+    0 0 0 1px rgba(245, 201, 66, 0.28),
+    0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
 .person-avatar img {
   width: 100%;
   height: 100%;
@@ -484,6 +491,31 @@ select {
   justify-items: center;
   gap: 2px;
   text-align: center;
+}
+
+.person-warning-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0 8px;
+}
+
+.person-warning-panel {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+}
+
+.person-warning-pill {
+  padding: 8px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(245, 201, 66, 0.48);
+  background: rgba(245, 201, 66, 0.12);
+  color: #ffe9a3;
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .person-label h2 {
@@ -506,6 +538,10 @@ select {
   pointer-events: auto;
   transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
   z-index: 3;
+}
+
+.person-card.has-warnings .person-popover {
+  border-color: rgba(245, 201, 66, 0.42);
 }
 
 .person-card.is-open .person-popover {

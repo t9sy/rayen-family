@@ -109,7 +109,7 @@
         "discord": "https://discord.com/users/1376294004034899972",
         "github": "https://github.com/Noir-infini"
       },
-      "warnings": ["Not an official member of the family. Don't tell rayen."]
+      "warnings": ["Not an official member of the family."]
     },
     {
       "id": "t9si",
@@ -117,13 +117,13 @@
       "aliases": ["Riko"],
       "avatarImage": "/assets/t9si.webp",
       "generation": 2,
-      "order": 1,
+      "order": 0,
       "bio": "Clone of Riko.",
       "socialLinks": {
         "discord": "https://discord.com/users/1070058785084817420",
         "github": "https://github.com/t9sy"
       },
-      "warnings": ["Not an official member of the family. Don't tell rayen."]
+      "warnings": ["Not an official member of the family."]
     },
     {
       "id": "akry",
@@ -167,7 +167,7 @@
         "youtube": "https://www.youtube.com/@guigui0246",
         "youtube2": "https://www.youtube.com/@guigui0246"
       },
-      "warnings": ["Not an official member of the family, just the creator of this tree. Don't tell rayen."]
+      "warnings": ["Not an official member of the family, just the creator of this tree."]
     },
     {
       "id": "taishi",
@@ -175,7 +175,7 @@
       "aliases": [],
       "avatarImage": "/assets/taishi.webp",
       "generation": 2,
-      "order": 0,
+      "order": 1,
       "socialLinks": {
         "discord": "https://discord.com/users/121269547452989440"
       }
@@ -265,6 +265,12 @@
       "to": "guigui0246",
       "label": "BFF",
       "tone": "custom"
+    },
+    {
+      "from": "taishi",
+      "to": "ino",
+      "label": "parent of",
+      "tone": "family"
     }
   ]
 }

@@ -4,6 +4,7 @@ export type Person = {
   aliases?: string[];
   role?: string;
   avatarImage?: string;
+  warnings?: string[];
   generation: number;
   order: number;
   born?: string;
