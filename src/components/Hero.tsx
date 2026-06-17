@@ -3,9 +3,10 @@ type HeroProps = {
   subtitle: string;
   onEditDiscord: () => void;
   onEditMail: () => void;
+  onEditGithub: () => void;
 };
 
-export function Hero({ title, subtitle, onEditDiscord, onEditMail }: HeroProps) {
+export function Hero({ title, subtitle, onEditDiscord, onEditMail, onEditGithub }: HeroProps) {
   return (
     <section className="hero">
       <div className="hero-copy">
@@ -21,6 +22,9 @@ export function Hero({ title, subtitle, onEditDiscord, onEditMail }: HeroProps) 
         </button>
         <button className="edit-button" type="button" onClick={onEditMail}>
           Request an edit by email
+        </button>
+        <button className="edit-button" type="button" onClick={onEditGithub}>
+          Contribute directly on GitHub
         </button>
       </div>
     </section>

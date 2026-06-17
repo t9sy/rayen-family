@@ -32,6 +32,10 @@ export default function App() {
     window.open(`mailto:${settings.editContact.mail}`, '_blank', 'noopener,noreferrer');
   };
 
+  const openEditGithubRequest = () => {
+    window.open(settings.editContact.github, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <main className="page-shell">
       <Hero
@@ -39,6 +43,7 @@ export default function App() {
         subtitle={settings.subtitle}
         onEditDiscord={openEditDiscordRequest}
         onEditMail={openEditMailRequest}
+        onEditGithub={openEditGithubRequest}
       />
       <Legend
         filters={filters}

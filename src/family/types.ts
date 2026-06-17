@@ -28,6 +28,7 @@ export type TreeSettings = {
     label: string;
     href: string;
     mail: string;
+    github: string;
   };
   people: Person[];
   relations: Relation[];
