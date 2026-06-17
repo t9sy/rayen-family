@@ -18,6 +18,21 @@ type ConnectorLine = {
   tone: 'family' | 'romance' | 'legal' | 'custom';
 };
 
+function getSpecialLabel(generation: number) {
+  switch (generation) {
+    case 0:
+      return ' (Before Tsundere Bot aka Riko)';
+    case 1:
+      return ' (<1000 subs)';
+    case 2:
+      return ' (<20000 subs)';
+    case 3:
+      return ' (>=20000 subs)';
+    default:
+      return '';
+  }
+}
+
 function formatRelationTone(tone?: Relation['tone']): ConnectorLine['tone'] {
   switch (tone) {
     case 'romance':
@@ -113,7 +128,6 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
         const key = pairKey(relation);
         const pairIndex = pairCounts.get(key) ?? 0;
         pairCounts.set(key, pairIndex + 1);
-        const pairTotal = relations.filter((candidate) => pairKey(candidate) === key).length;
 
         const fromRadius = Math.max(fromBox.width, fromBox.height) / 2;
         const toRadius = Math.max(toBox.width, toBox.height) / 2;
@@ -152,12 +166,6 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
           ];
         }
 
-        const sameGenerationPeople = [...cardRefs.current.entries()]
-          .filter(([personId]) => generationById.get(personId) === generationById.get(relation.from))
-          .map(([personId, node]) => ({ personId, box: getAvatarBox(node) }))
-          .filter(({ personId }) => personId !== relation.from && personId !== relation.to);
-
-        if (sameGenerationPeople.length === 0) {
           const midX = (start.x + end.x) / 2;
           const midY = (start.y + end.y) / 2;
 
@@ -172,22 +180,6 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
               tone: formatRelationTone(relation.tone),
             },
           ];
-        }
-        const rowTopY = Math.min(...sameGenerationPeople.map(({ box }) => box.top)) - 44;
-        const centeredIndex = pairIndex - (pairTotal - 1) / 2;
-        const elbowY = rowTopY + centeredIndex * 18;
-
-        return [
-          {
-            id: `${relation.from}-${relation.to}-${index}`,
-            path: `M ${start.x} ${start.y} L ${start.x} ${elbowY} L ${end.x} ${elbowY} L ${end.x} ${end.y}`,
-            labelX: (start.x + end.x) / 2,
-            labelY: elbowY,
-            label: relation.label,
-            arrow: relationShouldUseArrow(relation.label),
-            tone: formatRelationTone(relation.tone),
-          },
-        ];
       });
 
       setConnectorLines(nextLines);
@@ -255,7 +247,7 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
       <div className="generation-stack">
         {generations.map((group) => (
           <section key={group.generation} className="generation-row">
-            <div className="generation-label">Generation {group.generation}</div>
+            <div className="generation-label">Generation {group.generation}{getSpecialLabel(group.generation)}</div>
             <div className="generation-grid">
               {group.people.map((person) => (
                 <PersonCard

@@ -35,7 +35,7 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
         </div>
 
         <div className="person-label">
-          <p className="person-role">{person.role ?? 'Family member'}</p>
+          <p className="person-role">{person.role ?? ''}</p>
           <h2>{person.name}</h2>
         </div>
       </div>
@@ -47,7 +47,7 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
           </div>
           <div className="person-popover-meta">
             <p className="person-id">{person.id}</p>
-            <p className="person-role">{person.role ?? 'Family member'}</p>
+            <p className="person-role">{person.role ?? ''}</p>
             <h3>{person.name}</h3>
           </div>
         </header>
@@ -89,12 +89,15 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
         ) : null}
 
         {person.socialLinks && Object.keys(person.socialLinks).length > 0 ? (
-          <div className="social-links">
-            {Object.entries(person.socialLinks).map(([network, href]) => (
-              <a key={network} href={href} target="_blank" rel="noreferrer">
-                {network}
-              </a>
-            ))}
+          <div className="person-aliases">
+            <span className="person-aliases-label">Social Links</span>
+            <div className="social-links">
+              {Object.entries(person.socialLinks).map(([network, href]) => (
+                <a key={network} href={href} target="_blank" rel="noreferrer">
+                  {network}
+                </a>
+              ))}
+            </div>
           </div>
         ) : null}
 

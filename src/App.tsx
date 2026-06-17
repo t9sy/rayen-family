@@ -6,7 +6,7 @@ import { TreeBoard } from './components/TreeBoard';
 import { buildFilterOptions, createInitialFilterState, filterPeople, filterRelations } from './family/filtering';
 import type { Person, TreeSettings } from './family/types';
 
-const settings = treeData as TreeSettings;
+const settings = treeData as unknown as TreeSettings;
 
 export default function App() {
   const peopleById = useMemo(

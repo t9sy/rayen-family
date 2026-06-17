@@ -434,7 +434,6 @@ select {
   position: relative;
   display: grid;
   justify-items: center;
-  gap: 12px;
   padding: 6px 4px 0;
   border-radius: 26px;
   outline: none;
@@ -449,7 +448,7 @@ select {
 .person-core {
   display: grid;
   justify-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .person-avatar {
