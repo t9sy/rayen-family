@@ -1,10 +1,11 @@
 type HeroProps = {
   title: string;
   subtitle: string;
-  onEdit: () => void;
+  onEditDiscord: () => void;
+  onEditMail: () => void;
 };
 
-export function Hero({ title, subtitle, onEdit }: HeroProps) {
+export function Hero({ title, subtitle, onEditDiscord, onEditMail }: HeroProps) {
   return (
     <section className="hero">
       <div className="hero-copy">
@@ -15,8 +16,11 @@ export function Hero({ title, subtitle, onEdit }: HeroProps) {
 
       <div className="hero-actions">
         <p className="hero-note">Read only. Hover a person to open the record.</p>
-        <button className="edit-button" type="button" onClick={onEdit}>
+        <button className="edit-button" type="button" onClick={onEditDiscord}>
           Request an edit on Discord
+        </button>
+        <button className="edit-button" type="button" onClick={onEditMail}>
+          Request an edit by email
         </button>
       </div>
     </section>

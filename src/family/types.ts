@@ -25,6 +25,7 @@ export type TreeSettings = {
   editContact: {
     label: string;
     href: string;
+    mail: string;
   };
   people: Person[];
   relations: Relation[];

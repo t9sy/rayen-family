@@ -13,13 +13,17 @@ export default function App() {
     [],
   );
 
-  const openEditRequest = () => {
+  const openEditDiscordRequest = () => {
     window.open(settings.editContact.href, '_blank', 'noopener,noreferrer');
+  };
+
+  const openEditMailRequest = () => {
+    window.open(`mailto:${settings.editContact.mail}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
     <main className="page-shell">
-      <Hero title={settings.title} subtitle={settings.subtitle} onEdit={openEditRequest} />
+      <Hero title={settings.title} subtitle={settings.subtitle} onEditDiscord={openEditDiscordRequest} onEditMail={openEditMailRequest} />
       <Legend />
       <TreeBoard people={settings.people} relations={settings.relations} peopleById={peopleById} />
     </main>
