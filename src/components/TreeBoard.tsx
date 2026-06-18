@@ -46,8 +46,8 @@ function formatRelationTone(tone?: Relation['tone']): ConnectorLine['tone'] {
   }
 }
 
-function relationShouldUseArrow(label: string) {
-  return label.trim().toLowerCase().endsWith(' of');
+function relationShouldUseArrow(reverseLabel?: string) {
+  return !!reverseLabel;
 }
 
 function offsetPointTowards(
@@ -160,7 +160,7 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
               labelX: midX,
               labelY: midY,
               label: relation.label,
-              arrow: relationShouldUseArrow(relation.label),
+              arrow: relationShouldUseArrow(relation.reverseLabel),
               tone: formatRelationTone(relation.tone),
             },
           ];
@@ -176,7 +176,7 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
               labelX: midX,
               labelY: midY,
               label: relation.label,
-              arrow: relationShouldUseArrow(relation.label),
+              arrow: relationShouldUseArrow(relation.reverseLabel),
               tone: formatRelationTone(relation.tone),
             },
           ];

@@ -105,7 +105,7 @@
       "aliases": ["Ranni's Consort"],
       "avatarImage": "/assets/infininoir.webp",
       "generation": 2,
-      "order": 2,
+      "order": 3,
       "bio": "Greatest worshipper of Ino.",
       "socialLinks": {
         "discord": "https://discord.com/users/1376294004034899972",
@@ -178,7 +178,7 @@
       "aliases": [],
       "avatarImage": "/assets/taishi.webp",
       "generation": 2,
-      "order": 1,
+      "order": 2,
       "socialLinks": {
         "discord": "https://discord.com/users/121269547452989440"
       },
@@ -195,6 +195,58 @@
         "discord": "https://discord.com/users/754343039388090440",
         "twitch": "https://www.twitch.tv/questionblock64",
         "youtube": "https://www.youtube.com/channel/UCyGW_-g6lW6-ihuHyWr7-9w"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "role": "Fashion designer",
+      "aliases": [],
+      "avatarImage": "/assets/atlas.webp",
+      "generation": 1,
+      "order": 4,
+      "socialLinks": {
+        "discord": "https://discord.com/users/745319234619572372"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "blackdragon",
+      "name": "BlackDragon",
+      "role": "Fashion designer",
+      "aliases": [],
+      "avatarImage": "/assets/blackdragon.webp",
+      "generation": 1,
+      "order": 5,
+      "socialLinks": {
+        "discord": "https://discord.com/users/731485005922172930"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "hanbari",
+      "name": "Hanbari",
+      "role": "Admin",
+      "aliases": [],
+      "avatarImage": "/assets/hanbari.webp",
+      "generation": 2,
+      "order": 1,
+      "socialLinks": {
+        "discord": "https://discord.com/users/1282219317018103890"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "angel",
+      "name": "Angel's Pride",
+      "role": "Admin",
+      "aliases": [],
+      "avatarImage": "/assets/angel.gif",
+      "generation": 1,
+      "order": 3,
+      "socialLinks": {
+        "discord": "https://discord.com/users/226050139226112000"
       },
       "warnings": ["Not an official member of the family."]
     }
@@ -307,6 +359,20 @@
       "label": "parent of",
       "tone": "family",
       "reverseLabel": "child of"
+    },
+    {
+      "from": "riko",
+      "to": "hanbari",
+      "label": "enslaves",
+      "tone": "family",
+      "reverseLabel": "enslaved by"
+    },
+    {
+      "from": "riko",
+      "to": "angel",
+      "label": "enslaves",
+      "tone": "family",
+      "reverseLabel": "enslaved by"
     }
   ]
 }
