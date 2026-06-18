@@ -62,7 +62,7 @@
       "aliases": [],
       "avatarImage": "/assets/sun_yujiro.webp",
       "generation": 3,
-      "order": 1,
+      "order": 2,
       "bio": "Son of Rayen and Riko.",
       "socialLinks": {
         "discord": "https://discord.com/users/1229166942217179166",
@@ -75,7 +75,7 @@
       "aliases": [],
       "avatarImage": "/assets/asme.webp",
       "generation": 3,
-      "order": 2,
+      "order": 3,
       "bio": "Cousin of Ino and biggest fan of Riko.",
       "socialLinks": {
         "discord": "https://discord.com/users/991061592101765180",
@@ -92,7 +92,7 @@
       "aliases": [],
       "avatarImage": "/assets/volo.webp",
       "generation": 3,
-      "order": 3,
+      "order": 4,
       "bio": "Step-brother of Ino.",
       "socialLinks": {
         "discord": "https://discord.com/users/1458503065891115267"
@@ -133,7 +133,7 @@
       "aliases": ["Diamond Masters Wife"],
       "avatarImage": "/assets/akry.webp",
       "generation": 3,
-      "order": 4,
+      "order": 5,
       "bio": "Aunt of Ino and wife of Diamond Master.",
       "socialLinks": {
         "discord": "https://discord.com/users/1469215673963122823"
@@ -146,7 +146,7 @@
       "aliases": [],
       "avatarImage": "/assets/diamm.webp",
       "generation": 3,
-      "order": 5,
+      "order": 6,
       "bio": "Uncle of Ino.",
       "socialLinks": {
         "discord": "https://discord.com/users/573903151472836609",
@@ -259,9 +259,31 @@
       "aliases": [],
       "avatarImage": "/assets/kirito.webp",
       "generation": 3,
-      "order": 6,
+      "order": 7,
       "socialLinks": {
         "discord": "https://discord.com/users/915851873376956456"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "solonaras",
+      "name": "Solonaras",
+      "aliases": [],
+      "avatarImage": "/assets/solonaras.webp",
+      "generation": 2,
+      "order": 4,
+      "socialLinks": {
+        "discord": "https://discord.com/users/1414944231222411378"
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "sololuna",
+      "name": "Sololuna",
+      "aliases": [],
+      "generation": 3,
+      "order": 1,
+      "socialLinks": {
       },
       "warnings": ["Not an official member of the family."]
     }
@@ -395,6 +417,18 @@
       "label": "in love with",
       "tone": "romance",
       "reverseLabel": "asked out by"
+    },
+    {
+      "from": "solonaras",
+      "to": "rayen",
+      "label": "long lost brothers",
+      "tone": "family"
+    },
+    {
+      "from": "sololuna",
+      "to": "riko",
+      "label": "cousins",
+      "tone": "family"
     }
   ]
 }
