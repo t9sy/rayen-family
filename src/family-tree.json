@@ -62,7 +62,7 @@
       "aliases": [],
       "avatarImage": "/assets/sun_yujiro.webp",
       "generation": 3,
-      "order": 2,
+      "order": 1,
       "bio": "Son of Rayen and Riko.",
       "socialLinks": {
         "discord": "https://discord.com/users/1229166942217179166",
@@ -269,7 +269,7 @@
       "id": "solonaras",
       "name": "Solonaras",
       "aliases": [],
-      "avatarImage": "/assets/solonaras.webp",
+      "avatarImage": "/assets/solonaras.png",
       "generation": 2,
       "order": 4,
       "socialLinks": {
@@ -279,10 +279,12 @@
     },
     {
       "id": "sololuna",
-      "name": "Sololuna",
+      "name": "Luna",
       "aliases": [],
+      "avatarImage": "/assets/luna.png",
       "generation": 3,
-      "order": 1,
+      "order": 2,
+      "bio": "Wolf girl Vtuber, sings, plays minecraft, and likes to banter with chat.",
       "socialLinks": {
       },
       "warnings": ["Not an official member of the family."]
@@ -429,6 +431,13 @@
       "to": "riko",
       "label": "cousins",
       "tone": "family"
+    },
+    {
+      "from": "solonaras",
+      "to": "sololuna",
+      "label": "creator of",
+      "tone": "legal",
+      "reverseLabel": "created by"
     }
   ]
 }
