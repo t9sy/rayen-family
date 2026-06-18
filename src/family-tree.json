@@ -187,8 +187,8 @@
     },
     {
       "id": "questionblock",
-      "name": "QuestionBlock64",
-      "aliases": [],
+      "name": "Castorice",
+      "aliases": ["QuestionBlock64", "Cassy"],
       "avatarImage": "/assets/questionblock.webp",
       "generation": 3,
       "order": 0,
