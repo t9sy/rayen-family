@@ -19,6 +19,7 @@ export type Relation = {
   to: string;
   label: string;
   tone?: 'family' | 'romance' | 'legal' | 'custom';
+  reverseLabel?: string;
 };
 
 export type TreeSettings = {

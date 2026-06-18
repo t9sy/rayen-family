@@ -151,11 +151,12 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
 
         <footer className="person-footer">
           {relatedRelations.map((relation, index) => {
-            const otherId = relation.from === person.id ? relation.to : relation.from;
+            const isReverse = relation.to === person.id;
+            const otherId = isReverse ? relation.from : relation.to;
 
             return (
               <div key={`${relation.label}-${index}`} className="relation-chip">
-                <span>{relation.label}</span>
+                <span>{isReverse && relation.reverseLabel ? relation.reverseLabel : relation.label}</span>
                 <strong>{otherPersonName(otherId)}</strong>
               </div>
             );

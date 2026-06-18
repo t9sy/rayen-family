@@ -187,31 +187,36 @@
       "from": "rayen",
       "to": "riko",
       "label": "creator of",
-      "tone": "legal"
+      "tone": "legal",
+      "reverseLabel": "created by"
     },
     {
       "from": "rayen",
       "to": "ino",
       "label": "creator of",
-      "tone": "legal"
+      "tone": "legal",
+      "reverseLabel": "created by"
     },
     {
       "from": "ino",
       "to": "riko",
       "label": "assistant of",
-      "tone": "legal"
+      "tone": "legal",
+      "reverseLabel": "assisted by"
     },
     {
       "from": "rayen",
       "to": "yujiro",
       "label": "parent of",
-      "tone": "family"
+      "tone": "family",
+      "reverseLabel": "child of"
     },
     {
       "from": "riko",
       "to": "yujiro",
       "label": "parent of",
-      "tone": "family"
+      "tone": "family",
+      "reverseLabel": "child of"
     },
     {
       "from": "ino",
@@ -229,31 +234,36 @@
       "from": "asme",
       "to": "riko",
       "label": "biggest fan of",
-      "tone": "custom"
+      "tone": "custom",
+      "reverseLabel": "admired by"
     },
     {
       "from": "infininoir",
       "to": "ino",
       "label": "greatest worshipper of",
-      "tone": "custom"
+      "tone": "custom",
+      "reverseLabel": "worshipped by"
     },
     {
       "from": "t9si",
       "to": "riko",
       "label": "clone of",
-      "tone": "custom"
+      "tone": "custom",
+      "reverseLabel": "original of"
     },
     {
       "from": "akry",
       "to": "ino",
       "label": "aunt of",
-      "tone": "family"
+      "tone": "family",
+      "reverseLabel": "niece of"
     },
     {
       "from": "diamm",
       "to": "ino",
       "label": "uncle of",
-      "tone": "family"
+      "tone": "family",
+      "reverseLabel": "niece of"
     },
     {
       "from": "diamm",
@@ -271,7 +281,8 @@
       "from": "taishi",
       "to": "ino",
       "label": "parent of",
-      "tone": "family"
+      "tone": "family",
+      "reverseLabel": "child of"
     }
   ]
 }
