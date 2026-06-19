@@ -68,7 +68,7 @@ export function Legend({
   };
 
   return (
-    <section className="legend legend-with-filters">
+    <section className="legend legend-with-filters" id="legend-root">
       <article className={`legend-filters${filtersExpanded ? ' is-expanded' : ' is-collapsed'}`}>
         <div className="legend-filters-head">
           <div>

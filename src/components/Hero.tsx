@@ -8,7 +8,7 @@ type HeroProps = {
 
 export function Hero({ title, subtitle, onEditDiscord, onEditMail, onEditGithub }: HeroProps) {
   return (
-    <section className="hero">
+    <section className="hero" id="hero-root">
       <div className="hero-copy">
         <p className="terminal-line">rayen@family-tree ~</p>
         <h1>{title}</h1>

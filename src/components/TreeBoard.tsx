@@ -1,6 +1,7 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Person, Relation } from '../family/types';
 import { PersonCard } from './PersonCard';
+import { updateLegend } from './updates';
 
 type TreeBoardProps = {
   people: Person[];
@@ -240,9 +241,10 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
     const loop = (t: number) => {
       lag_timeout += t - last;
       if (lag_timeout > MIN_LAG) {
-        console.log('Loop tick:', t, ', lag timeout:', lag_timeout);
+        // console.log('Loop tick:', t, ', lag timeout:', lag_timeout);
         lag_timeout = 0;
         updateLines();
+        updateLegend();
       }
       last = t;
 

@@ -1,6 +1,6 @@
 {
   "title": "Rayen Family Tree",
-  "subtitle": "A read-only family view driven by a single settings file. Mostly vibe-coded cause that's rayen's way.",
+  "subtitle": "A family tree of the Rayen and Riko family based on the discord roles. Mostly vibe-coded cause that's rayen's way. Yellow borders indicate warnings.",
   "editContact": {
     "label": "@guigui0246",
     "href": "https://discord.com/channels/@me/436178855104086037",
@@ -97,7 +97,7 @@
       "socialLinks": {
         "discord": "https://discord.com/users/1458503065891115267"
       },
-      "warnings": ["Not recognised by rayen."]
+      "warnings": ["Not acknowledged by rayen."]
     },
     {
       "id": "infininoir",
@@ -111,7 +111,7 @@
         "discord": "https://discord.com/users/1376294004034899972",
         "github": "https://github.com/Noir-infini"
       },
-      "warnings": ["Recognised by rayen but doesn't have the discord role."]
+      "warnings": ["Acknowledged by rayen but doesn't have the discord role."]
     },
     {
       "id": "t9si",
@@ -138,7 +138,7 @@
       "socialLinks": {
         "discord": "https://discord.com/users/1469215673963122823"
       },
-      "warnings": ["Not recognised by rayen."]
+      "warnings": ["Not acknowledged by rayen."]
     },
     {
       "id": "diamm",
@@ -171,7 +171,7 @@
         "youtube": "https://www.youtube.com/@guigui0246",
         "youtube2": "https://www.youtube.com/@guigui0246"
       },
-      "warnings": ["Recognised by rayen but doesn't have the discord role."]
+      "warnings": ["Acknowledged by rayen but doesn't have the discord role."]
     },
     {
       "id": "taishi",
@@ -183,7 +183,7 @@
       "socialLinks": {
         "discord": "https://discord.com/users/121269547452989440"
       },
-      "warnings": ["Not recognised by rayen."]
+      "warnings": ["Not acknowledged by rayen."]
     },
     {
       "id": "questionblock",
