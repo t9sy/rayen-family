@@ -72,6 +72,25 @@ function getAvatarBox(node: HTMLElement) {
   return avatar?.getBoundingClientRect() ?? node.getBoundingClientRect();
 }
 
+function getPopoverShift(node: HTMLElement) {
+  const popover = node.querySelector<HTMLElement>('.person-popover');
+  if (!popover) {
+    return 0;
+  }
+
+  const popoverBox = popover.getBoundingClientRect();
+  const cardBox = node.getBoundingClientRect();
+  const viewportWidth = document.documentElement.clientWidth;
+  const margin = 16;
+  const cardCenterX = cardBox.left + cardBox.width / 2;
+  const currentLeft = cardCenterX - popoverBox.width / 2;
+  const minLeft = margin;
+  const maxLeft = Math.max(margin, viewportWidth - margin - popoverBox.width);
+  const desiredLeft = Math.min(Math.max(currentLeft, minLeft), maxLeft);
+
+  return desiredLeft - currentLeft;
+}
+
 export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef(new Map<string, HTMLElement>());
@@ -111,6 +130,11 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
       };
 
       const pairCounts = new Map<string, number>();
+
+      for (const node of cardRefs.current.values()) {
+        node.style.setProperty('--popover-shift', `${getPopoverShift(node)}px`);
+      }
+
       const nextLines = relations.flatMap((relation, index) => {
         const fromCard = cardRefs.current.get(relation.from);
         const toCard = cardRefs.current.get(relation.to);
@@ -185,10 +209,16 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
       setConnectorLines(nextLines);
     };
 
+    let animationFrame = 0;
+    const scheduleUpdate = () => {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(updateLines);
+    };
+
     updateLines();
 
     const resizeObserver = new ResizeObserver(() => {
-      window.requestAnimationFrame(updateLines);
+      scheduleUpdate();
     });
 
     if (containerRef.current) {
@@ -199,11 +229,14 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
       resizeObserver.observe(node);
     }
 
-    window.addEventListener('resize', updateLines);
+    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('scroll', scheduleUpdate, true);
 
     return () => {
       resizeObserver.disconnect();
-      window.removeEventListener('resize', updateLines);
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', scheduleUpdate);
+      window.removeEventListener('scroll', scheduleUpdate, true);
     };
   }, [relations]);
 

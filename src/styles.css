@@ -547,7 +547,7 @@ select {
   position: absolute;
   left: 50%;
   top: 146px;
-  transform: translate(-50%, 0) scale(0.96);
+  transform: translate(calc(-50% + var(--popover-shift, 0px)), 0) scale(0.96);
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -567,7 +567,7 @@ select {
 .person-card.is-open .person-popover {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, 0) scale(1);
+  transform: translate(calc(-50% + var(--popover-shift, 0px)), 0) scale(1);
   pointer-events: auto;
 }
 
