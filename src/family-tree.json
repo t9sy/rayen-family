@@ -62,7 +62,7 @@
       "aliases": [],
       "avatarImage": "/assets/sun_yujiro.webp",
       "generation": 3,
-      "order": 1,
+      "order": 0,
       "bio": "Son of Rayen and Riko.",
       "socialLinks": {
         "discord": "https://discord.com/users/1229166942217179166",
@@ -116,14 +116,16 @@
     {
       "id": "t9si",
       "name": "Riko",
-      "aliases": ["Riko"],
+      "aliases": ["Jynx", "t9sy", "t9si"],
       "avatarImage": "/assets/t9si.webp",
       "generation": 2,
-      "order": 0,
+      "order": 1,
       "bio": "Clone of Riko.",
       "socialLinks": {
         "discord": "https://discord.com/users/1070058785084817420",
-        "github": "https://github.com/t9sy"
+        "github": "https://github.com/t9sy",
+        "x": "https://x.com/t9syx",
+        "steam": "https://steamcommunity.com/id/t9sy/"
       },
       "warnings": ["Not an official member of the family."]
     },
@@ -191,7 +193,7 @@
       "aliases": ["QuestionBlock64", "Cassy"],
       "avatarImage": "/assets/questionblock.webp",
       "generation": 3,
-      "order": 0,
+      "order": 1,
       "socialLinks": {
         "discord": "https://discord.com/users/754343039388090440",
         "twitch": "https://www.twitch.tv/questionblock64",
@@ -232,7 +234,7 @@
       "aliases": [],
       "avatarImage": "/assets/hanbari.webp",
       "generation": 2,
-      "order": 1,
+      "order": 0,
       "socialLinks": {
         "discord": "https://discord.com/users/1282219317018103890"
       },
@@ -438,6 +440,24 @@
       "label": "creator of",
       "tone": "legal",
       "reverseLabel": "created by"
+    },
+    {
+      "from": "t9si",
+      "to": "ino",
+      "label": "sisters",
+      "tone": "family"
+    },
+    {
+      "from": "t9si",
+      "to": "taishi",
+      "label": "friends",
+      "tone": "custom"
+    },
+    {
+      "from": "t9si",
+      "to": "sololuna",
+      "label": "friends",
+      "tone": "custom"
     }
   ]
 }
