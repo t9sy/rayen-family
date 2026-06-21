@@ -472,6 +472,8 @@ select {
   overflow: visible;
   flex: 0 0 auto;
   cursor: pointer;
+  scroll-margin-top: 24px;
+  scroll-margin-left: 24px;
 }
 
 .person-card:hover,
@@ -730,6 +732,16 @@ select {
 .relation-chip {
   min-width: 110px;
   padding: 8px 10px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .relation-chip span {
@@ -765,6 +777,11 @@ select {
     padding-top: 12px;
   }
 
+  .person-card {
+    scroll-margin-top: 8vh;
+    scroll-margin-left: 58vw;
+  }
+
   .legend {
     grid-template-columns: 1fr;
   }
@@ -776,5 +793,12 @@ select {
 
   .person-popover {
     width: min(290px, 88vw);
+  }
+}
+
+@media (max-width: 720px) and (orientation: landscape) {
+  .person-card {
+    scroll-margin-top: 18vh;
+    scroll-margin-left: 32vw;
   }
 }

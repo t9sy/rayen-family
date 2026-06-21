@@ -117,6 +117,8 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef(new Map<string, HTMLElement>());
   const [connectorLines, setConnectorLines] = useState<ConnectorLine[]>([]);
+  const [openPersonId, setOpenPersonId] = useState<string | null>(null);
+  const [openRequestId, setOpenRequestId] = useState(0);
   const generationById = useMemo(
     () => new Map(people.map((person) => [person.id, person.generation])),
     [people],
@@ -269,6 +271,27 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
     }
   };
 
+  const openPersonCard = (personId: string) => {
+    const node = cardRefs.current.get(personId);
+
+    setOpenPersonId(personId);
+    setOpenRequestId((current) => current + 1);
+
+    if (!node) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        node.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'start',
+        });
+      });
+    });
+  };
+
   return (
     <section className="tree-board" ref={containerRef}>
       <svg className="connector-layer" aria-hidden="true">
@@ -307,6 +330,9 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
                   relatedRelations={relatedRelations(person.id)}
                   otherPersonName={(personId) => peopleById.get(personId)?.name ?? personId}
                   setCardRef={setCardRef}
+                  openPersonCard={openPersonCard}
+                  openRequestId={openRequestId}
+                  openPersonId={openPersonId}
                 />
               ))}
             </div>

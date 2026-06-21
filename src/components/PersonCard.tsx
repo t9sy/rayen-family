@@ -6,9 +6,20 @@ type PersonCardProps = {
   relatedRelations: Relation[];
   otherPersonName: (personId: string) => string;
   setCardRef: (personId: string, node: HTMLElement | null) => void;
+  openPersonCard: (personId: string) => void;
+  openRequestId: number;
+  openPersonId: string | null;
 };
 
-export function PersonCard({ person, relatedRelations, otherPersonName, setCardRef }: PersonCardProps) {
+export function PersonCard({
+  person,
+  relatedRelations,
+  otherPersonName,
+  setCardRef,
+  openPersonCard,
+  openRequestId,
+  openPersonId,
+}: PersonCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isPinnedOpen, setIsPinnedOpen] = useState(false);
@@ -32,6 +43,12 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
       document.removeEventListener('pointerdown', handlePointerDown);
     };
   }, [isPinnedOpen]);
+
+  useEffect(() => {
+    if (openPersonId === person.id) {
+      setIsPinnedOpen(true);
+    }
+  }, [openPersonId, openRequestId, person.id]);
 
   const isOpen = isHovered || isPinnedOpen;
 
@@ -155,10 +172,20 @@ export function PersonCard({ person, relatedRelations, otherPersonName, setCardR
             const otherId = isReverse ? relation.from : relation.to;
 
             return (
-              <div key={`${relation.label}-${index}`} className="relation-chip">
+              <button
+                key={`${relation.label}-${index}`}
+                type="button"
+                className="relation-chip"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsPinnedOpen(false);
+                  setIsHovered(false);
+                  openPersonCard(otherId);
+                }}
+              >
                 <span>{isReverse && relation.reverseLabel ? relation.reverseLabel : relation.label}</span>
                 <strong>{otherPersonName(otherId)}</strong>
-              </div>
+              </button>
             );
           })}
         </footer>
