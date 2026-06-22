@@ -1,1 +1,1 @@
-export const VAPID = "BA--4cM-OJ_vtmpwXfTSxzETFHIWInALKgOHR_tCddZAy7XG_oavPo89hAXNd8o6ud_s-EJy1tLZCItJL4LyHVo";
+export const VAPID = "BJsaxtv3-xyT7epNxqOmR6JyZOMIFCnPnXtUwq2Bx085Cqz7vJhmkavOBTynChS8Wg7aRhQdJvT3XgRjaGjHzJw";
