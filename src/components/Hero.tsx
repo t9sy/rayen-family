@@ -1,12 +1,26 @@
 type HeroProps = {
   title: string;
   subtitle: string;
+  updatesSubscribed: boolean;
+  subscriptionStatus: string;
+  isUpdatingSubscription: boolean;
+  onToggleUpdatesSubscription: () => void;
   onEditDiscord: () => void;
   onEditMail: () => void;
   onEditGithub: () => void;
 };
 
-export function Hero({ title, subtitle, onEditDiscord, onEditMail, onEditGithub }: HeroProps) {
+export function Hero({
+  title,
+  subtitle,
+  updatesSubscribed,
+  subscriptionStatus,
+  isUpdatingSubscription,
+  onToggleUpdatesSubscription,
+  onEditDiscord,
+  onEditMail,
+  onEditGithub,
+}: HeroProps) {
   return (
     <section className="hero" id="hero-root">
       <div className="hero-copy">
@@ -17,6 +31,16 @@ export function Hero({ title, subtitle, onEditDiscord, onEditMail, onEditGithub 
 
       <div className="hero-actions">
         <p className="hero-note">Read only. Hover a person to open the record.</p>
+        <p className="hero-note hero-status">{subscriptionStatus}</p>
+        <button
+          className={`update-button${updatesSubscribed ? ' is-subscribed' : ' is-unsubscribed'}`}
+          type="button"
+          aria-pressed={updatesSubscribed}
+          disabled={isUpdatingSubscription}
+          onClick={onToggleUpdatesSubscription}
+        >
+          {updatesSubscribed ? 'unsubscribe to page update' : 'subscribe to page update'}
+        </button>
         <button className="edit-button" type="button" onClick={onEditDiscord}>
           Request an edit on Discord
         </button>

@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { VAPID as LOCAL_VAPID } from './family/public_vapid';
 import treeData from './family-tree.json';
 import { Hero } from './components/Hero';
 import { Legend } from './components/Legend';
@@ -7,6 +8,40 @@ import { buildFilterOptions, createInitialFilterState, filterPeople, filterRelat
 import type { Person, TreeSettings } from './family/types';
 
 const settings = treeData as unknown as TreeSettings;
+const updateApiBaseUrl = 'https://riko-family-update.guigui0246.workers.dev';
+const updatePageId = 'default';
+const updateNotificationText = 'The page you follow has been deployed.';
+
+function urlBase64ToUint8Array(base64String: string) {
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let index = 0; index < rawData.length; index += 1) {
+    outputArray[index] = rawData.charCodeAt(index);
+  }
+
+  return outputArray;
+}
+
+async function getUpdateServiceWorkerRegistration() {
+  if (!('serviceWorker' in navigator)) {
+    throw new Error('Service workers are not supported in this browser.');
+  }
+
+  return navigator.serviceWorker.register('/sw.js', { scope: '/' });
+}
+
+async function readJsonResponse<T>(response: Response) {
+  const text = await response.text();
+
+  if (!text.trim()) {
+    return null as T | null;
+  }
+
+  return JSON.parse(text) as T;
+}
 
 export default function App() {
   const peopleById = useMemo(
@@ -14,6 +49,9 @@ export default function App() {
     [],
   );
   const [filters, setFilters] = useState(createInitialFilterState);
+  const [updatesSubscribed, setUpdatesSubscribed] = useState(false);
+  const [subscriptionStatus, setSubscriptionStatus] = useState('Checking update subscription status...');
+  const [isUpdatingSubscription, setIsUpdatingSubscription] = useState(false);
   const filterOptions = useMemo(() => buildFilterOptions(settings.people, settings.relations), []);
   const visiblePeople = useMemo(
     () => filterPeople(settings.people, settings.relations, filters),
@@ -36,11 +74,134 @@ export default function App() {
     window.open(settings.editContact.github, '_blank', 'noopener,noreferrer');
   };
 
+  useEffect(() => {
+    let cancelled = false;
+
+    async function syncSubscriptionState() {
+      try {
+        const registration = await getUpdateServiceWorkerRegistration();
+        const subscription = await registration.pushManager.getSubscription();
+
+        if (cancelled) {
+          return;
+        }
+
+        setUpdatesSubscribed(Boolean(subscription));
+        setSubscriptionStatus(subscription ? 'Ready to unsubscribe.' : 'Ready to subscribe.');
+      } catch (error) {
+        if (!cancelled) {
+          setSubscriptionStatus(error instanceof Error ? error.message : String(error));
+        }
+      }
+    }
+
+    syncSubscriptionState();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const toggleUpdatesSubscription = async () => {
+    setIsUpdatingSubscription(true);
+
+    try {
+      const registration = await getUpdateServiceWorkerRegistration();
+
+      if (updatesSubscribed) {
+        const subscription = await registration.pushManager.getSubscription();
+
+        if (!subscription) {
+          setUpdatesSubscribed(false);
+          setSubscriptionStatus('No active push subscription found.');
+          return;
+        }
+
+        const response = await fetch(`${updateApiBaseUrl}/unsubscribe`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            pageId: updatePageId,
+            endpoint: subscription.endpoint,
+          }),
+        });
+
+        const data = await readJsonResponse<{ error?: string }>(response);
+
+        if (!response.ok) {
+          throw new Error(data?.error || 'Failed to unsubscribe.');
+        }
+
+        await subscription.unsubscribe();
+        setUpdatesSubscribed(false);
+        setSubscriptionStatus(`Unsubscribed from ${updatePageId}.`);
+        return;
+      }
+
+      if (!('PushManager' in window) || !('Notification' in window)) {
+        throw new Error('Push notifications are not supported in this browser.');
+      }
+
+      const permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        throw new Error('Notification permission was not granted.');
+      }
+
+      // Prefer the local public VAPID key if available to avoid cross-origin requests.
+      const publicKey = LOCAL_VAPID || (await (async () => {
+        const publicKeyResponse = await fetch(`${updateApiBaseUrl}/public-key`);
+        const publicKeyData = await readJsonResponse<{ publicKey?: string; error?: string }>(publicKeyResponse);
+
+        if (!publicKeyResponse.ok) {
+          throw new Error(publicKeyData?.error || 'VAPID public key is not configured.');
+        }
+
+        if (!publicKeyData?.publicKey) {
+          throw new Error('VAPID public key is missing.');
+        }
+
+        return publicKeyData.publicKey as string;
+      })());
+
+      const subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicKey),
+      });
+
+      const response = await fetch(`${updateApiBaseUrl}/subscribe`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          pageId: updatePageId,
+          subscription: subscription.toJSON(),
+          note: updateNotificationText,
+        }),
+      });
+
+      const data = await readJsonResponse<{ error?: string }>(response);
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to subscribe.');
+      }
+
+      setUpdatesSubscribed(true);
+      setSubscriptionStatus(`Subscribed to ${updatePageId}.`);
+    } catch (error) {
+      setSubscriptionStatus(error instanceof Error ? error.message : String(error));
+    } finally {
+      setIsUpdatingSubscription(false);
+    }
+  };
+
   return (
     <main className="page-shell">
       <Hero
         title={settings.title}
         subtitle={settings.subtitle}
+        updatesSubscribed={updatesSubscribed}
+        subscriptionStatus={subscriptionStatus}
+        isUpdatingSubscription={isUpdatingSubscription}
+        onToggleUpdatesSubscription={toggleUpdatesSubscription}
         onEditDiscord={openEditDiscordRequest}
         onEditMail={openEditMailRequest}
         onEditGithub={openEditGithubRequest}

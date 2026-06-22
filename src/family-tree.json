@@ -153,7 +153,8 @@
       "socialLinks": {
         "discord": "https://discord.com/users/573903151472836609",
         "steam": "https://steamcommunity.com/profiles/76561198993144961",
-        "twitch": "https://www.twitch.tv/wan_diamantino_op"
+        "twitch": "https://www.twitch.tv/diamantino_op",
+        "twitch2": "https://www.twitch.tv/wan_diamantino_op"
       }
     },
     {
@@ -190,7 +191,7 @@
     {
       "id": "questionblock",
       "name": "Castorice",
-      "aliases": ["QuestionBlock64", "Cassy"],
+      "aliases": ["QuestionBlock64", "Cassy", "QB"],
       "avatarImage": "/assets/questionblock.webp",
       "generation": 3,
       "order": 1,
