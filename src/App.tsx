@@ -117,7 +117,7 @@ export default function App() {
           return;
         }
 
-        const response = await fetch(`${updateApiBaseUrl}/unsubscribe`, {
+        const response = await fetch(`${updateApiBaseUrl}/api/unsubscribe`, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
@@ -149,7 +149,7 @@ export default function App() {
 
       // Prefer the local public VAPID key if available to avoid cross-origin requests.
       const publicKey = LOCAL_VAPID || (await (async () => {
-        const publicKeyResponse = await fetch(`${updateApiBaseUrl}/public-key`);
+        const publicKeyResponse = await fetch(`${updateApiBaseUrl}/api/public-key`);
         const publicKeyData = await readJsonResponse<{ publicKey?: string; error?: string }>(publicKeyResponse);
 
         if (!publicKeyResponse.ok) {
@@ -168,7 +168,7 @@ export default function App() {
         applicationServerKey: urlBase64ToUint8Array(publicKey),
       });
 
-      const response = await fetch(`${updateApiBaseUrl}/subscribe`, {
+      const response = await fetch(`${updateApiBaseUrl}/api/subscribe`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
