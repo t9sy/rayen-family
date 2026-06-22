@@ -1,0 +1,21 @@
+name: Verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  run-verifier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Run verifier
+        run: python verifier.py
