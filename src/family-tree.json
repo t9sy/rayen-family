@@ -290,6 +290,32 @@
       "socialLinks": {
       },
       "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "kiko",
+      "name": "Kiko",
+      "aliases": [],
+      "generation": 3,
+      "order": 8,
+      "bio": "Named member of the shadow garden code name Kilo. Was in Rayen's basement before Lord Shadow saved her.",
+      "socialLinks": {
+      },
+      "warnings": ["Not an official member of the family."]
+    },
+    {
+      "id": "lordshadow",
+      "name": "Lord Shadow",
+      "aliases": ["blakdraganx666"],
+      "avatarImage": "/assets/lordshadow.webp",
+      "generation": 2,
+      "order": 5,
+      "bio": "Saved Kiko from Rayen's basement.",
+      "socialLinks": {
+        "discord": "https://discord.com/users/717372737655537756",
+        "twitch": "https://www.twitch.tv/blakdraganx666",
+        "twitch2": "https://www.twitch.tv/lordshadowcid"
+      },
+      "warnings": ["Not an official member of the family."]
     }
   ],
   "relations": [
@@ -458,6 +484,20 @@
       "to": "sololuna",
       "label": "friends",
       "tone": "custom"
+    },
+    {
+      "from": "lordshadow",
+      "to": "kiko",
+      "label": "saved",
+      "tone": "custom",
+      "reverseLabel": "saved by"
+    },
+    {
+      "from": "rayen",
+      "to": "kiko",
+      "label": "held captive",
+      "tone": "custom",
+      "reverseLabel": "was captive of"
     }
   ]
 }
