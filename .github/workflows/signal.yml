@@ -1,0 +1,36 @@
+name: Signal Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait
+        run: sleep 90
+
+      - name: Notify Worker on success
+        shell: pwsh
+        run: |
+          $worker = "https://riko-family-update.guigui0246.workers.dev"
+          $token = "${{ secrets.DEPLOY_TOKEN }}"
+
+          $payload = @{
+            pageId = "default"
+            title  = "Riko Family Tree deployed"
+            body   = "The page was updated"
+            url    = "https://riko-family.neuroawards.com/"
+          } | ConvertTo-Json -Compress
+
+          Invoke-RestMethod `
+            -Method POST `
+            -Uri "$worker/api/deploy?sync=1" `
+            -Headers @{
+              "content-type" = "application/json"
+              "x-admin-token" = $token
+            } `
+            -Body $payload
