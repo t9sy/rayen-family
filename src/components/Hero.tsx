@@ -31,7 +31,9 @@ export function Hero({
 
       <div className="hero-actions">
         <p className="hero-note">Read only. Hover a person to open the record.</p>
-        <p className="hero-note hero-status">{subscriptionStatus}</p>
+        {subscriptionStatus && (
+          <p className="hero-note hero-status">{subscriptionStatus}</p>
+        )}
         <button
           className={`update-button${updatesSubscribed ? ' is-subscribed' : ' is-unsubscribed'}`}
           type="button"

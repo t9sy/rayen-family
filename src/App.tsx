@@ -87,7 +87,7 @@ export default function App() {
         }
 
         setUpdatesSubscribed(Boolean(subscription));
-        setSubscriptionStatus(subscription ? 'Ready to unsubscribe.' : 'Ready to subscribe.');
+        setSubscriptionStatus("");
       } catch (error) {
         if (!cancelled) {
           setSubscriptionStatus(error instanceof Error ? error.message : String(error));
