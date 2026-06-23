@@ -41,7 +41,7 @@ export function Hero({
           disabled={isUpdatingSubscription}
           onClick={onToggleUpdatesSubscription}
         >
-          {updatesSubscribed ? 'unsubscribe to page update' : 'subscribe to page update'}
+          {updatesSubscribed ? 'Unsubscribe from page update' : 'Subscribe to page update'}
         </button>
         <button className="edit-button" type="button" onClick={onEditDiscord}>
           Request an edit on Discord
