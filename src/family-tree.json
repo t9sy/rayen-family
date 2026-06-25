@@ -83,7 +83,7 @@
       "aliases": [],
       "avatarImage": "/assets/asme.webp",
       "generation": 3,
-      "order": 3,
+      "order": 2,
       "bio": "Cousin of Ino and biggest fan of Riko.",
       "socialLinks": {
         "discord": "https://discord.com/users/991061592101765180",
@@ -102,7 +102,7 @@
       "aliases": [],
       "avatarImage": "/assets/volo.webp",
       "generation": 3,
-      "order": 4,
+      "order": 3,
       "bio": "Step-brother of Ino.",
       "socialLinks": {
         "discord": "https://discord.com/users/1458503065891115267"
@@ -148,7 +148,7 @@
       "aliases": ["Diamond Masters Wife"],
       "avatarImage": "/assets/akry.webp",
       "generation": 3,
-      "order": 5,
+      "order": 4,
       "bio": "Aunt of Ino and wife of Diamond Master.",
       "socialLinks": {
         "discord": "https://discord.com/users/1469215673963122823"
@@ -162,7 +162,7 @@
       "aliases": [],
       "avatarImage": "/assets/diamm.webp",
       "generation": 3,
-      "order": 6,
+      "order": 5,
       "bio": "Uncle of Ino.",
       "socialLinks": {
         "discord": "https://discord.com/users/573903151472836609",
@@ -205,25 +205,6 @@
       },
       "acknowledged": false,
       "hasRole": true
-    },
-    {
-      "id": "questionblock",
-      "name": "Castorice",
-      "aliases": ["QuestionBlock64", "Cassy", "QB"],
-      "avatarImage": "/assets/questionblock.webp",
-      "generation": 3,
-      "order": 1,
-      "socialLinks": {
-        "discord": "https://discord.com/users/754343039388090440",
-        "twitch": "https://www.twitch.tv/questionblock64",
-        "youtube": "https://www.youtube.com/channel/UCyGW_-g6lW6-ihuHyWr7-9w"
-      },
-      "acknowledged": false,
-      "hasRole": false,
-      "modifiers": {
-        "strike": true
-      },
-      "bio": "For child safety reasons, a parent of this person has requested that their child be removed from the family tree."
     },
     {
       "id": "atlas",
@@ -289,7 +270,7 @@
       "aliases": [],
       "avatarImage": "/assets/kirito.webp",
       "generation": 3,
-      "order": 7,
+      "order": 6,
       "socialLinks": {
         "discord": "https://discord.com/users/915851873376956456"
       },
@@ -315,7 +296,7 @@
       "aliases": [],
       "avatarImage": "/assets/luna.png",
       "generation": 3,
-      "order": 2,
+      "order": 1,
       "bio": "Wolf girl Vtuber, sings, plays minecraft, and likes to banter with chat.",
       "socialLinks": {
       },
@@ -327,7 +308,7 @@
       "name": "Kiko",
       "aliases": [],
       "generation": 3,
-      "order": 8,
+      "order": 7,
       "bio": "Named member of the shadow garden code name Kilo. Was in Rayen's basement before Lord Shadow saved her.",
       "socialLinks": {
       },
@@ -355,7 +336,7 @@
       "name": "Blue Cloth",
       "aliases": [],
       "generation": 3,
-      "order": 9,
+      "order": 8,
       "bio": "The cam hider.",
       "socialLinks": {
       },
@@ -461,13 +442,6 @@
     {
       "from": "taishi",
       "to": "ino",
-      "label": "parent of",
-      "tone": "family",
-      "reverseLabel": "child of"
-    },
-    {
-      "from": "t9si",
-      "to": "questionblock",
       "label": "parent of",
       "tone": "family",
       "reverseLabel": "child of"
