@@ -16,6 +16,7 @@ export type Person = {
   hasRole: boolean;
   modifiers?: {
     strike?: boolean;
+    megaPfP?: boolean;
   };
 };
 

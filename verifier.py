@@ -14,6 +14,7 @@ ALLOWED_WARNINGS = {
 
 class Modifier(TypedDict):
     strike: Optional[bool]
+    megaPfP: Optional[bool]
 
 
 class Person(TypedDict):

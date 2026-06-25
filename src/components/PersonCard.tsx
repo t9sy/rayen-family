@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { Person, Relation } from '../family/types';
 
 type PersonCardProps = {
@@ -73,6 +73,12 @@ export function PersonCard({
   }, [openPersonId, openRequestId, person.id]);
 
   const isOpen = isHovered || isPinnedOpen;
+  const hasMegaPfpBackground = isOpen && modifiers.megaPfP && !!person.avatarImage;
+  const popoverStyle: CSSProperties | undefined = person.avatarImage
+    ? ({
+        '--person-popover-bg': `url("${person.avatarImage}")`,
+      } as CSSProperties)
+    : undefined;
 
   const togglePinnedOpen = () => {
     setIsPinnedOpen((current) => !current);
@@ -80,7 +86,7 @@ export function PersonCard({
 
   return (
     <article
-      className={`person-card${isOpen ? ' is-open' : ''}${warnings.length > 0 ? ' has-warnings' : ''}`}
+      className={`person-card${isOpen ? ' is-open' : ''}${warnings.length > 0 ? ' has-warnings' : ''}${person.avatarImage ? ' has-mega-pfp' : ''}`}
       ref={(node) => {
         cardRef.current = node;
         setCardRef(person.id, node);
@@ -121,7 +127,7 @@ export function PersonCard({
         </div>
       </div>
 
-      <div className="person-popover" onClick={(event) => event.stopPropagation()}>
+      <div className="person-popover" style={popoverStyle} onClick={(event) => event.stopPropagation()}>
         <header className="person-popover-head">
           <div className="person-popover-image" aria-hidden="true">
             {person.avatarImage ? <img src={person.avatarImage} alt="" /> : <span>?</span>}

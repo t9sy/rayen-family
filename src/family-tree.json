@@ -116,7 +116,7 @@
       "aliases": ["Ranni's Consort"],
       "avatarImage": "/assets/infininoir.webp",
       "generation": 2,
-      "order": 3,
+      "order": 4,
       "bio": "Greatest worshipper of Ino.",
       "socialLinks": {
         "discord": "https://discord.com/users/1376294004034899972",
@@ -283,7 +283,7 @@
       "aliases": [],
       "avatarImage": "/assets/solonaras.png",
       "generation": 2,
-      "order": 4,
+      "order": 3,
       "socialLinks": {
         "discord": "https://discord.com/users/1414944231222411378"
       },
@@ -342,6 +342,22 @@
       },
       "acknowledged": false,
       "hasRole": false
+    },
+    {
+      "id": "universe",
+      "name": "20Universe08",
+      "aliases": ["The universe itself"],
+      "generation": 2,
+      "order": 6,
+      "avatarImage": "/assets/universe.gif",
+      "bio": "The universe.",
+      "socialLinks": {
+      },
+      "acknowledged": false,
+      "hasRole": false,
+      "modifiers": {
+        "megaPfP": true
+      }
     }
   ],
   "relations": [

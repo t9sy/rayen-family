@@ -24,13 +24,7 @@ http://localhost:5173
 
 ## Build For Production
 
-Create the production bundle with:
-
-```bash
-npm run build
-```
-
-The compiled site is written to the `dist` folder.
+No production should be build. Let Cloudflare Pages handle the build and deployment and the dev server handle the testing.
 
 ## Deploy On Cloudflare Pages From GitHub
 
