@@ -9,6 +9,10 @@ type PersonCardProps = {
   openPersonCard: (personId: string) => void;
   openRequestId: number;
   openPersonId: string | null;
+  onMegaPfpChange: (
+    personId: string,
+    payload: { imageUrl: string; priority: 'hovered' | 'pinned' } | null,
+  ) => void;
 };
 
 function getWarningMessage(acknowledged: boolean, hasRole: boolean): string {
@@ -35,6 +39,7 @@ export function PersonCard({
   openPersonCard,
   openRequestId,
   openPersonId,
+  onMegaPfpChange,
 }: PersonCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -73,7 +78,23 @@ export function PersonCard({
   }, [openPersonId, openRequestId, person.id]);
 
   const isOpen = isHovered || isPinnedOpen;
-  const hasMegaPfpBackground = isOpen && modifiers.megaPfP && !!person.avatarImage;
+  const megaPfpPriority = isPinnedOpen ? 'pinned' : isHovered ? 'hovered' : null;
+
+  useEffect(() => {
+    if (!person.avatarImage || !modifiers.megaPfP || !megaPfpPriority) {
+      onMegaPfpChange(person.id, null);
+      return;
+    }
+
+    onMegaPfpChange(person.id, {
+      imageUrl: person.avatarImage,
+      priority: megaPfpPriority,
+    });
+
+    return () => {
+      onMegaPfpChange(person.id, null);
+    };
+  }, [megaPfpPriority, modifiers.megaPfP, onMegaPfpChange, person.avatarImage, person.id]);
   const popoverStyle: CSSProperties | undefined = person.avatarImage
     ? ({
         '--person-popover-bg': `url("${person.avatarImage}")`,
@@ -86,7 +107,7 @@ export function PersonCard({
 
   return (
     <article
-      className={`person-card${isOpen ? ' is-open' : ''}${warnings.length > 0 ? ' has-warnings' : ''}${person.avatarImage ? ' has-mega-pfp' : ''}`}
+      className={`person-card${isOpen ? ' is-open' : ''}${warnings.length > 0 ? ' has-warnings' : ''}${person.avatarImage ? ' has-pfp' : ''}`}
       ref={(node) => {
         cardRef.current = node;
         setCardRef(person.id, node);

@@ -7,6 +7,10 @@ type TreeBoardProps = {
   people: Person[];
   relations: Relation[];
   peopleById: Map<string, Person>;
+  onMegaPfpChange: (
+    personId: string,
+    payload: { imageUrl: string; priority: 'hovered' | 'pinned' } | null,
+  ) => void;
 };
 
 type ConnectorLine = {
@@ -113,7 +117,7 @@ function getPopoverShift(node: HTMLElement, container: HTMLElement) {
   return clampedLeft - currentLeft;
 }
 
-export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
+export function TreeBoard({ people, relations, peopleById, onMegaPfpChange }: TreeBoardProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef(new Map<string, HTMLElement>());
   const [connectorLines, setConnectorLines] = useState<ConnectorLine[]>([]);
@@ -333,6 +337,7 @@ export function TreeBoard({ people, relations, peopleById }: TreeBoardProps) {
                   openPersonCard={openPersonCard}
                   openRequestId={openRequestId}
                   openPersonId={openPersonId}
+                  onMegaPfpChange={onMegaPfpChange}
                 />
               ))}
             </div>

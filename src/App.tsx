@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { VAPID as LOCAL_VAPID } from './family/public_vapid';
 import treeData from './family-tree.json';
 import { Hero } from './components/Hero';
@@ -11,6 +11,15 @@ const settings = treeData as unknown as TreeSettings;
 const updateApiBaseUrl = 'https://riko-family-update.guigui0246.workers.dev';
 const updatePageId = 'default';
 const updateNotificationText = 'The page you follow has been deployed.';
+
+type MegaPfpPriority = 'hovered' | 'pinned';
+
+type MegaPfpCandidate = {
+  personId: string;
+  imageUrl: string;
+  priority: MegaPfpPriority;
+  sequence: number;
+};
 
 function urlBase64ToUint8Array(base64String: string) {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
@@ -48,6 +57,8 @@ export default function App() {
     () => new Map<string, Person>(settings.people.map((person) => [person.id, person])),
     [],
   );
+  const sequenceRef = useRef(0);
+  const [megaPfpCandidates, setMegaPfpCandidates] = useState<Record<string, MegaPfpCandidate>>({});
   const [filters, setFilters] = useState(createInitialFilterState);
   const [updatesSubscribed, setUpdatesSubscribed] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState('Checking update subscription status...');
@@ -60,6 +71,69 @@ export default function App() {
   const visibleRelations = useMemo(
     () => filterRelations(settings.relations, visiblePeople, filters),
     [filters, visiblePeople],
+  );
+
+  const activeMegaPfp = useMemo(() => {
+    const candidates = Object.values(megaPfpCandidates);
+
+    if (candidates.length === 0) {
+      return null;
+    }
+
+    return [...candidates].sort((left, right) => {
+      if (left.priority !== right.priority) {
+        return left.priority === 'pinned' ? -1 : 1;
+      }
+
+      return right.sequence - left.sequence;
+    })[0];
+  }, [megaPfpCandidates]);
+
+  const handleMegaPfpChange = useCallback(
+    (personId: string, payload: { imageUrl: string; priority: MegaPfpPriority } | null) => {
+      setMegaPfpCandidates((current) => {
+        const existing = current[personId];
+
+        if (!payload) {
+          if (!existing) {
+            return current;
+          }
+
+          const next = { ...current };
+          delete next[personId];
+          return next;
+        }
+
+        if (
+          existing &&
+          existing.imageUrl === payload.imageUrl &&
+          existing.priority === payload.priority
+        ) {
+          return current;
+        }
+
+        sequenceRef.current += 1;
+
+        return {
+          ...current,
+          [personId]: {
+            personId,
+            imageUrl: payload.imageUrl,
+            priority: payload.priority,
+            sequence: sequenceRef.current,
+          },
+        };
+      });
+    },
+    [],
+  );
+
+  const pageStyle = useMemo(
+    () => ({
+      '--page-mega-pfp-bg': activeMegaPfp ? `url("${activeMegaPfp.imageUrl}")` : 'none',
+      '--page-mega-pfp-opacity': activeMegaPfp ? '1' : '0',
+    } as CSSProperties),
+    [activeMegaPfp],
   );
 
   const openEditDiscordRequest = () => {
@@ -194,7 +268,7 @@ export default function App() {
   };
 
   return (
-    <main className="page-shell">
+    <main className="page-shell" style={pageStyle}>
       <Hero
         title={settings.title}
         subtitle={settings.subtitle}
@@ -215,7 +289,12 @@ export default function App() {
         totalPeopleCount={settings.people.length}
         totalRelationsCount={settings.relations.length}
       />
-      <TreeBoard people={visiblePeople} relations={visibleRelations} peopleById={peopleById} />
+      <TreeBoard
+        people={visiblePeople}
+        relations={visibleRelations}
+        peopleById={peopleById}
+        onMegaPfpChange={handleMegaPfpChange}
+      />
     </main>
   );
 }
