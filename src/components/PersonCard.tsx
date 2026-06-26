@@ -116,32 +116,47 @@ export function PersonCard({
     const img = imgRef.current;
     if (!el || !img) return;
 
+    const updateTileHeight = () => {
+      if (!img.naturalWidth || !img.naturalHeight) {
+        return;
+      }
 
-  const ro = new ResizeObserver(() => {
-    const containerH = el.clientHeight;
-    const containerW = el.clientWidth;
+      const containerH = el.clientHeight;
+      const containerW = el.clientWidth;
 
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    const containerRatio = containerW / containerH;
+      if (!containerH || !containerW) {
+        return;
+      }
 
-    const baseTileHeight = containerW / imgRatio;
-    let s = imgRatio / containerRatio;
-    const max_change = 0.5;
-    if (s > 1 + max_change) {
-      s /= Math.round(s);
-    }
-    while (s < 1 - max_change) {
-      s *= 2;
-    }
-    let tileHeight = baseTileHeight * s;
-    tileHeight = Math.fround(tileHeight);
-    setTileHeight(tileHeight);
-  });
+      const imgRatio = img.naturalWidth / img.naturalHeight;
+      const containerRatio = containerW / containerH;
 
-  ro.observe(el);
-  img.addEventListener("load", () => ro.observe(el));
+      const baseTileHeight = containerW / imgRatio;
+      let scale = imgRatio / containerRatio;
+      const maxChange = 0.5;
 
-  return () => ro.disconnect();
+      if (scale > 1 + maxChange) {
+        scale /= Math.round(scale);
+      }
+
+      while (scale < 1 - maxChange) {
+        scale *= 2;
+      }
+
+      setTileHeight(Math.fround(baseTileHeight * scale));
+    };
+
+    const ro = new ResizeObserver(updateTileHeight);
+    const handleLoad = () => updateTileHeight();
+
+    ro.observe(el);
+    img.addEventListener('load', handleLoad);
+    updateTileHeight();
+
+    return () => {
+      img.removeEventListener('load', handleLoad);
+      ro.disconnect();
+    };
   }, []);
 
   return (
