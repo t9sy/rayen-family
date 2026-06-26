@@ -95,15 +95,54 @@ export function PersonCard({
       onMegaPfpChange(person.id, null);
     };
   }, [megaPfpPriority, modifiers.megaPfP, onMegaPfpChange, person.avatarImage, person.id]);
+  const [tileHeight, setTileHeight] = useState(1);
   const popoverStyle: CSSProperties | undefined = person.avatarImage
     ? ({
         '--person-popover-bg': `url("${person.avatarImage}")`,
+        '--bg-tileH': `${tileHeight}px`,
       } as CSSProperties)
     : undefined;
 
   const togglePinnedOpen = () => {
     setIsPinnedOpen((current) => !current);
   };
+
+  // For scaling the background image to fit the popover nicely
+  const ref: React.RefObject<HTMLDivElement | null> = useRef(null);
+  const imgRef: React.RefObject<HTMLImageElement | null> = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    const img = imgRef.current;
+    if (!el || !img) return;
+
+
+  const ro = new ResizeObserver(() => {
+    const containerH = el.clientHeight;
+    const containerW = el.clientWidth;
+
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const containerRatio = containerW / containerH;
+
+    const baseTileHeight = containerW / imgRatio;
+    let s = imgRatio / containerRatio;
+    const max_change = 0.5;
+    if (s > 1 + max_change) {
+      s /= Math.round(s);
+    }
+    while (s < 1 - max_change) {
+      s *= 2;
+    }
+    let tileHeight = baseTileHeight * s;
+    tileHeight = Math.fround(tileHeight);
+    setTileHeight(tileHeight);
+  });
+
+  ro.observe(el);
+  img.addEventListener("load", () => ro.observe(el));
+
+  return () => ro.disconnect();
+  }, []);
 
   return (
     <article
@@ -148,104 +187,116 @@ export function PersonCard({
         </div>
       </div>
 
-      <div className="person-popover" style={popoverStyle} onClick={(event) => event.stopPropagation()}>
-        <header className="person-popover-head">
-          <div className="person-popover-image" aria-hidden="true">
-            {person.avatarImage ? <img src={person.avatarImage} alt="" /> : <span>?</span>}
-          </div>
-          <div className="person-popover-meta">
-            <p className="person-id">{person.id}</p>
-            <p className="person-role">{person.role ?? ''}</p>
-            <h3
-              style={{
-                textDecoration: modifiers.strike ? 'line-through' : 'none',
-              }}
-            >{person.name}</h3>
-          </div>
-        </header>
+      <div className="person-popover" style={popoverStyle} onClick={(event) => event.stopPropagation()} ref={ref}>
+        {person.avatarImage ?
+          <img
+            ref={imgRef}
+            src={person.avatarImage}
+            alt=""
+            className="popover-bg"
+            style={{ position: 'absolute', display: 'none' }}
+          />
+        : null}
 
-        {warnings.length > 0 ? (
-          <div className="person-warning-panel" aria-label="Warnings">
-            {warnings.map((warning) => (
-              <div key={warning} className="person-warning-pill">
-                {warning}
-              </div>
-            ))}
-          </div>
-        ) : null}
-
-        <dl className="person-facts">
-          {person.born ? (
-            <div>
-              <dt>Born</dt>
-              <dd>{person.born}</dd>
+        <div className="popover-content">
+          <header className="person-popover-head">
+            <div className="person-popover-image" aria-hidden="true">
+              {person.avatarImage ? <img src={person.avatarImage} alt="" /> : <span>?</span>}
             </div>
-          ) : null}
-          {person.died ? (
-            <div>
-              <dt>Died</dt>
-              <dd>{person.died}</dd>
-            </div>
-          ) : null}
-          {person.location ? (
-            <div>
-              <dt>Location</dt>
-              <dd>{person.location}</dd>
-            </div>
-          ) : null}
-        </dl>
-
-        {person.bio ? <p className="person-bio">{person.bio}</p> : null}
-
-        {aliases.length > 0 ? (
-          <div className="person-aliases">
-            <span className="person-aliases-label">Aliases</span>
-            <div className="person-aliases-list">
-              {aliases.map((alias) => (
-                <span key={alias} className="person-alias-pill">
-                  {alias}
-                </span>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
-        {person.socialLinks && Object.keys(person.socialLinks).length > 0 ? (
-          <div className="person-aliases">
-            <span className="person-aliases-label">Social Links</span>
-            <div className="social-links">
-              {Object.entries(person.socialLinks).map(([network, href]) => (
-                <a key={network} href={href} target="_blank" rel="noreferrer">
-                  {network}
-                </a>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
-        <footer className="person-footer">
-          {relatedRelations.map((relation, index) => {
-            const isReverse = relation.to === person.id;
-            const otherId = isReverse ? relation.from : relation.to;
-
-            return (
-              <button
-                key={`${relation.label}-${index}`}
-                type="button"
-                className="relation-chip"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  setIsPinnedOpen(false);
-                  setIsHovered(false);
-                  openPersonCard(otherId);
+            <div className="person-popover-meta">
+              <p className="person-id">{person.id}</p>
+              <p className="person-role">{person.role ?? ''}</p>
+              <h3
+                style={{
+                  textDecoration: modifiers.strike ? 'line-through' : 'none',
                 }}
-              >
-                <span>{isReverse && relation.reverseLabel ? relation.reverseLabel : relation.label}</span>
-                <strong>{otherPersonName(otherId)}</strong>
-              </button>
-            );
-          })}
-        </footer>
+              >{person.name}</h3>
+            </div>
+          </header>
+
+          {warnings.length > 0 ? (
+            <div className="person-warning-panel" aria-label="Warnings">
+              {warnings.map((warning) => (
+                <div key={warning} className="person-warning-pill">
+                  {warning}
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          <dl className="person-facts">
+            {person.born ? (
+              <div>
+                <dt>Born</dt>
+                <dd>{person.born}</dd>
+              </div>
+            ) : null}
+            {person.died ? (
+              <div>
+                <dt>Died</dt>
+                <dd>{person.died}</dd>
+              </div>
+            ) : null}
+            {person.location ? (
+              <div>
+                <dt>Location</dt>
+                <dd>{person.location}</dd>
+              </div>
+            ) : null}
+          </dl>
+
+          {person.bio ? <p className="person-bio">{person.bio}</p> : null}
+
+          {aliases.length > 0 ? (
+            <div className="person-aliases">
+              <span className="person-aliases-label">Aliases</span>
+              <div className="person-aliases-list">
+                {aliases.map((alias) => (
+                  <span key={alias} className="person-alias-pill">
+                    {alias}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {person.socialLinks && Object.keys(person.socialLinks).length > 0 ? (
+            <div className="person-aliases">
+              <span className="person-aliases-label">Social Links</span>
+              <div className="social-links">
+                {Object.entries(person.socialLinks).map(([network, href]) => (
+                  <a key={network} href={href} target="_blank" rel="noreferrer">
+                    {network}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          <footer className="person-footer">
+            {relatedRelations.map((relation, index) => {
+              const isReverse = relation.to === person.id;
+              const otherId = isReverse ? relation.from : relation.to;
+
+              return (
+                <button
+                  key={`${relation.label}-${index}`}
+                  type="button"
+                  className="relation-chip"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setIsPinnedOpen(false);
+                    setIsHovered(false);
+                    openPersonCard(otherId);
+                  }}
+                >
+                  <span>{isReverse && relation.reverseLabel ? relation.reverseLabel : relation.label}</span>
+                  <strong>{otherPersonName(otherId)}</strong>
+                </button>
+              );
+            })}
+          </footer>
+        </div>
       </div>
     </article>
   );
